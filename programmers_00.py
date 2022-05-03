@@ -36,3 +36,21 @@ def solution(id_list, report, k):
             answer.append(0)
 
     return answer
+
+
+# ==============================================================
+
+# 모범 답안 (사고의 전환이 필요하다) 사고의 전환 -> 시간단축
+
+def solution(id_list, report, k):
+    answer = [0] * len(id_list)
+    reports = {x: 0 for x in id_list}
+
+    for r in set(report):
+        reports[r.split()[1]] += 1
+
+    for r in set(report):
+        if reports[r.split()[1]] >= k:
+            answer[id_list.index(r.split()[0])] += 1
+
+    return answer
