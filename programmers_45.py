@@ -13,3 +13,14 @@ def solution(arr):
 arr = [4, 3, 2, 1]
 
 print(solution(arr))
+
+# ===== 모범답안 (Python)
+
+arr = [4, 3, 2, 1]
+
+
+def solution(arr):
+    return [i for i in arr if i > min(arr)]
+
+
+print(solution(arr))
