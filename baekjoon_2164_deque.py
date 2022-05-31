@@ -13,3 +13,16 @@ while len(q) != 1:
     q.append(next)
 
 print(q[0])
+
+
+N = int(input())
+
+# deque를 바로 range로 초기화시켜줄 수 있다.
+dq = deque(range(1, N+1))
+
+while len(dq) > 1:
+    dq.popleft()
+    # deque에서 값을 뽑고 바로 dq에 append를 해 줄 수 있다.
+    dq.append(dq.popleft())
+
+print(dq.popleft())
