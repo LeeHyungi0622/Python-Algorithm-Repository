@@ -38,6 +38,31 @@ n = 5
 lost = [1, 2, 4]
 reserve = [2, 4, 5]
 
+
+# ====== 프로그래머스 커뮤러닝 강사님 풀ㅣ
+def solution(n, lost, reserve):
+    u = [1] * (n+2)
+
+    for i in reserve:
+        u[i] += 1
+
+    for j in lost:
+        u[j] -= 1
+
+    for k in range(1, n+1):
+        if u[k-1] == 0 and u[k] == 2:
+            u[k-1:k+1] = [1, 1]
+        elif u[k] == 2 and u[k+1] == 0:
+            u[k:k+2] = [1, 1]
+    print('result (u) : ', u)
+    return len([i for i in u[1:-1] if i > 0])
+
+
+n = 5
+lost = [2, 4]
+reserve = [1, 3, 5]
+print('체육 수업을 들을 수 있는 학생 수 : ', solution(n, lost, reserve))
+
 # ====== 모범답안 코드(Python)
 
 
