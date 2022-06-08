@@ -39,7 +39,7 @@ lost = [1, 2, 4]
 reserve = [2, 4, 5]
 
 
-# ====== 프로그래머스 커뮤러닝 강사님 풀ㅣ
+# ====== 프로그래머스 커뮤러닝 강사님 풀이(1)
 def solution(n, lost, reserve):
     u = [1] * (n+2)
 
@@ -56,6 +56,20 @@ def solution(n, lost, reserve):
             u[k:k+2] = [1, 1]
     print('result (u) : ', u)
     return len([i for i in u[1:-1] if i > 0])
+
+# ====== 프로그래머스 커뮤러닝 강사님 풀이(2)
+
+
+def solution(n, lost, reserve):
+    s = set(lost) & set(reserve)
+    l = set(lost) - s
+    r = set(reserve) - s
+    for x in sorted(r):
+        if x - 1 in l:
+            l.remove(x - 1)
+        elif x + 1 in l:
+            l.remove(x + 1)
+    return n - len(l)
 
 
 n = 5
