@@ -30,3 +30,18 @@ def solution(people, tshirts):
         except:
             break;
     return answer
+
+def solution(people, tshirts):
+    answer = 0
+    for a in people:
+        for s in tshirts:
+            print(a, s)
+            if a <= s:
+                answer += 1
+                tshirts.remove(s)
+    return answer
+
+people = [1, 2, 3]
+tshirts = [1, 1]
+
+print(solution(people, tshirts))
