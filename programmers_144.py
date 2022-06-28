@@ -37,3 +37,32 @@ tickets = [["ICN", "AOO"], ["AOO", "BOO"], ["BOO", "COO"], ["COO", "DOO"], ["DOO
 ["ICN", "AOO", "BOO", "COO", "DOO", "EOO", "DOO", "COO", "BOO", "AOO"]
 
 print(solution(tickets))
+
+
+# 강사님 풀이 방법 
+# 알파벳의 역순으로 정렬을 하는 것이 좋다. (리스트를 뒤에서부터 탐색하는 것이 효율적이다.)
+
+def solution(tickets):
+    routes = {}
+    for t in tickets:
+        # 리스트 병합으로 풀이 [] + []
+        routes[t[0]] = routes.get(t[0], []) + [t[1]]
+    for r in routes:
+        routes[r].sort(reverse=True)
+    stack = ["ICN"]
+    path = []
+    
+    while len(stack) > 0:
+        top = stack[-1]
+        # 갈수있는 공항이 없다면 (표가 없는 경우)
+        if top not in routes or len(routes[top]) == 0:
+            path.append(stack.pop())
+        # 갈 수 있는 공항이 있다면,
+        else:
+            # 역순으로 정렬을 했기 때문에 제일 앞서는 공항을 스택에 넣고,
+            stack.append(routes[top][-1])
+            # 위의 스택에 넣은 것을 떼어낸다. (pop으로 대체 가능)
+            routes[top] = routes[top][:-1]
+    return path[::-1]
+
+    
